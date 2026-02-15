@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://hubpy1gne3cq"]
 
 [ext_resource type="Script" uid="uid://bom05etmr1qaw" path="res://scenes/arena/arena.gd" id="1_8trdl"]
-[ext_resource type="PackedScene" uid="uid://c7f1nbwvru7ak" path="res://scenes/actors/player/player.tscn" id="1_e05a3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1qjuf"]
 
@@ -14,15 +13,7 @@
 [node name="Arena" type="Node2D" unique_id=1769172877]
 script = ExtResource("1_8trdl")
 
-[node name="Background" type="ColorRect" parent="." unique_id=547395792]
-custom_minimum_size = Vector2(-600, 0)
-offset_left = -600.0
-offset_top = -400.0
-offset_right = 600.0
-offset_bottom = 400.0
-color = Color(0.38109186, 0.38109186, 0.38109186, 1)
-
-[node name="Player" parent="." unique_id=680644511 instance=ExtResource("1_e05a3")]
+[node name="Background" type="TextureRect" parent="." unique_id=556539088]
 
 [node name="BorderVisual" type="Line2D" parent="." unique_id=653550992]
 points = PackedVector2Array(-600, -400, 600, -400, 600, 400, -600, 400)
@@ -72,6 +63,12 @@ text = "PASS"
 [node name="FailButton" type="Button" parent="CanvasLayer/HBoxContainer" unique_id=319660233]
 layout_mode = 2
 text = "FAIL"
+
+[node name="BossSpawn" type="Marker2D" parent="." unique_id=982885574]
+
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1493516642]
+
+[node name="ActorContainer" type="Node2D" parent="." unique_id=914673634]
 
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/PassButton" to="." method="_on_pass_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/FailButton" to="." method="_on_fail_button_pressed"]

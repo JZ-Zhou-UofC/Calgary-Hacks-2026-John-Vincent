@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://ym0gwsihug14"]
+
+[ext_resource type="Script" uid="uid://b8fh3cpweryao" path="res://scenes/actors/Boss/boss.gd" id="1_n4f6m"]
+
+[node name="Boss" type="CharacterBody2D" unique_id=1345007871]
+script = ExtResource("1_n4f6m")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=719488050]
