@@ -2,6 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://3b6jfloh1m1l" path="res://assets/ui/black_and_white_theme/black_and_white.tres" id="1_bocl7"]
 [ext_resource type="Script" uid="uid://bkg2n1qroqejo" path="res://scenes/hub/hub.gd" id="1_qssp3"]
+[ext_resource type="Script" uid="uid://glfsj87bpx47" path="res://scenes/hub/option_panel.gd" id="3_koree"]
 
 [node name="Hub" type="Control" unique_id=858724206]
 layout_mode = 3
@@ -46,33 +47,52 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="MainVBox/CharacterPanel/CharacterHBox/StatsPanel" unique_id=1880650706]
+[node name="TurnLabel" type="Label" parent="MainVBox/CharacterPanel/CharacterHBox/StatsPanel" unique_id=1880650706]
 layout_mode = 2
 text = "HP: 120
 Damage: 15
 Speed: 10
 "
 
+[node name="LifeStageLabel" type="Label" parent="MainVBox/CharacterPanel/CharacterHBox/StatsPanel" unique_id=540344214]
+layout_mode = 2
+
 [node name="WeaponPanel" type="PanelContainer" parent="MainVBox/CharacterPanel/CharacterHBox" unique_id=2023927981]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="MainVBox/CharacterPanel/CharacterHBox/WeaponPanel" unique_id=1983276524]
+[node name="WeaponTypeLabel" type="Label" parent="MainVBox/CharacterPanel/CharacterHBox/WeaponPanel" unique_id=1983276524]
 layout_mode = 2
 text = "Weapons:
 - Sword
 - Pistol
 "
 
+[node name="ProficiencyLabel" type="Label" parent="MainVBox/CharacterPanel/CharacterHBox/WeaponPanel" unique_id=1601529064]
+layout_mode = 2
+
 [node name="OptionPanel" type="PanelContainer" parent="MainVBox/CharacterPanel/CharacterHBox" unique_id=1992622469]
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("3_koree")
 
-[node name="Label" type="Label" parent="MainVBox/CharacterPanel/CharacterHBox/OptionPanel" unique_id=2131322624]
+[node name="EnergyLabel" type="Label" parent="MainVBox/CharacterPanel/CharacterHBox/OptionPanel" unique_id=2131322624]
 layout_mode = 2
 text = "buy a
 train kids
 aa"
+
+[node name="TrainButton" type="Button" parent="MainVBox/CharacterPanel/CharacterHBox/OptionPanel" unique_id=276338670]
+layout_mode = 2
+
+[node name="LegacyButton" type="Button" parent="MainVBox/CharacterPanel/CharacterHBox/OptionPanel" unique_id=1896498102]
+layout_mode = 2
+
+[node name="LifespanButton" type="Button" parent="MainVBox/CharacterPanel/CharacterHBox/OptionPanel" unique_id=654191413]
+layout_mode = 2
+
+[node name="NurtureButton" type="Button" parent="MainVBox/CharacterPanel/CharacterHBox/OptionPanel" unique_id=1997226815]
+layout_mode = 2
 
 [node name="MapPanel" type="PanelContainer" parent="MainVBox" unique_id=1978499782]
 layout_mode = 2
@@ -106,10 +126,12 @@ size_flags_horizontal = 3
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="MainVBox/MapPanel/MapVBox/MapColumns" unique_id=760516701]
+[node name="StartButton" type="CenterContainer" parent="MainVBox/MapPanel/MapVBox/MapColumns" unique_id=760516701]
 layout_mode = 2
 
-[node name="StartButton" type="Button" parent="MainVBox/MapPanel/MapVBox/MapColumns/CenterContainer" unique_id=678337101]
+[node name="StartButton" type="Button" parent="MainVBox/MapPanel/MapVBox/MapColumns/StartButton" unique_id=678337101]
 custom_minimum_size = Vector2(200, 80)
 layout_mode = 2
 text = "START ROUND"
+
+[connection signal="pressed" from="MainVBox/MapPanel/MapVBox/MapColumns/StartButton/StartButton" to="." method="_on_start_button_pressed"]

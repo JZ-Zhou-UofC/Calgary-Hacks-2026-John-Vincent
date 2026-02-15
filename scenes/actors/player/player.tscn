@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://c7f1nbwvru7ak"]
+
+[ext_resource type="Script" uid="uid://c7j1tf2p62vvy" path="res://scenes/actors/player/player.gd" id="1_15tap"]
+[ext_resource type="Texture2D" uid="uid://xycec21u4uij" path="res://assets/characters/brotato/legs.png" id="2_oj104"]
+[ext_resource type="Texture2D" uid="uid://3c3cmeruefjh" path="res://assets/characters/brotato/Old.png" id="3_mpktj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oj104"]
+radius = 78.05
+height = 156.1
+
+[node name="Player" type="CharacterBody2D" unique_id=680644511]
+script = ExtResource("1_15tap")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1705084668]
+position = Vector2(4, 6)
+shape = SubResource("CapsuleShape2D_oj104")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1690068220]
+
+[node name="Body" type="Sprite2D" parent="." unique_id=1591606107]
+texture = ExtResource("3_mpktj")
+
+[node name="Legs" type="Node2D" parent="." unique_id=1191117341]
+
+[node name="LegR" type="Node2D" parent="Legs" unique_id=1876729803]
+z_index = 1
+z_as_relative = false
+position = Vector2(-20, 50)
+
+[node name="Sprite2D" type="Sprite2D" parent="Legs/LegR" unique_id=767327574]
+z_index = 1
+texture = ExtResource("2_oj104")
+hframes = 2
+
+[node name="LegL" type="Node2D" parent="Legs" unique_id=95025328]
+z_index = 1
+z_as_relative = false
+position = Vector2(20, 50)
+
+[node name="Sprite2D" type="Sprite2D" parent="Legs/LegL" unique_id=1660430214]
+z_index = 1
+texture = ExtResource("2_oj104")
+hframes = 2
+frame = 1
