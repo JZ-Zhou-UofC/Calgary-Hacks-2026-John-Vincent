@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://prjgvmgdthn7"]
+
+[ext_resource type="Theme" uid="uid://3b6jfloh1m1l" path="res://assets/ui/black_and_white_theme/black_and_white.tres" id="1_bocl7"]
+[ext_resource type="Script" uid="uid://bkg2n1qroqejo" path="res://scenes/hub/hub.gd" id="1_qssp3"]
+
+[node name="Hub" type="Control" unique_id=858724206]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_bocl7")
+script = ExtResource("1_qssp3")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1877981414]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainVBox" type="VBoxContainer" parent="." unique_id=1179630259]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="CharacterPanel" type="PanelContainer" parent="MainVBox" unique_id=750559918]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CharacterHBox" type="HBoxContainer" parent="MainVBox/CharacterPanel" unique_id=1749721699]
+layout_mode = 2
+
+[node name="PortraitPanel" type="PanelContainer" parent="MainVBox/CharacterPanel/CharacterHBox" unique_id=1504517425]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatsPanel" type="PanelContainer" parent="MainVBox/CharacterPanel/CharacterHBox" unique_id=349356168]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MainVBox/CharacterPanel/CharacterHBox/StatsPanel" unique_id=1880650706]
+layout_mode = 2
+text = "HP: 120
+Damage: 15
+Speed: 10
+"
+
+[node name="WeaponPanel" type="PanelContainer" parent="MainVBox/CharacterPanel/CharacterHBox" unique_id=2023927981]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MainVBox/CharacterPanel/CharacterHBox/WeaponPanel" unique_id=1983276524]
+layout_mode = 2
+text = "Weapons:
+- Sword
+- Pistol
+"
+
+[node name="OptionPanel" type="PanelContainer" parent="MainVBox/CharacterPanel/CharacterHBox" unique_id=1992622469]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MainVBox/CharacterPanel/CharacterHBox/OptionPanel" unique_id=2131322624]
+layout_mode = 2
+text = "buy a
+train kids
+aa"
+
+[node name="MapPanel" type="PanelContainer" parent="MainVBox" unique_id=1978499782]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MapVBox" type="VBoxContainer" parent="MainVBox/MapPanel" unique_id=429576510]
+layout_mode = 2
+
+[node name="MapColumns" type="HBoxContainer" parent="MainVBox/MapPanel/MapVBox" unique_id=835437663]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="NormalMapsColumn" type="VBoxContainer" parent="MainVBox/MapPanel/MapVBox/MapColumns" unique_id=1009192098]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureButton" type="TextureButton" parent="MainVBox/MapPanel/MapVBox/MapColumns/NormalMapsColumn" unique_id=1487043728]
+layout_mode = 2
+
+[node name="TextureButton2" type="TextureButton" parent="MainVBox/MapPanel/MapVBox/MapColumns/NormalMapsColumn" unique_id=777659720]
+layout_mode = 2
+
+[node name="TextureButton3" type="TextureButton" parent="MainVBox/MapPanel/MapVBox/MapColumns/NormalMapsColumn" unique_id=1170811075]
+layout_mode = 2
+
+[node name="BossColumn" type="CenterContainer" parent="MainVBox/MapPanel/MapVBox/MapColumns" unique_id=1387599115]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BossMapButton" type="TextureButton" parent="MainVBox/MapPanel/MapVBox/MapColumns/BossColumn" unique_id=2074656038]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="MainVBox/MapPanel/MapVBox/MapColumns" unique_id=760516701]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="MainVBox/MapPanel/MapVBox/MapColumns/CenterContainer" unique_id=678337101]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+text = "START ROUND"

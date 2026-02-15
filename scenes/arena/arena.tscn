@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://hubpy1gne3cq"]
+
+[ext_resource type="PackedScene" uid="uid://c7f1nbwvru7ak" path="res://scenes/actors/player.tscn" id="1_e05a3"]
+
+[node name="Arena" type="Node2D" unique_id=1769172877]
+
+[node name="Background" type="ColorRect" parent="." unique_id=547395792]
+offset_left = -1000.0
+offset_top = -1000.0
+offset_right = 1000.0
+offset_bottom = 1000.0
+color = Color(0.38109186, 0.38109186, 0.38109186, 1)
+
+[node name="Player" parent="." unique_id=680644511 instance=ExtResource("1_e05a3")]

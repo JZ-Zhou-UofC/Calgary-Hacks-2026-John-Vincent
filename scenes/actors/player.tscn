@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://c7f1nbwvru7ak"]
+
+[ext_resource type="Script" uid="uid://c7j1tf2p62vvy" path="res://scenes/actors/player.gd" id="1_15tap"]
+
+[sub_resource type="Gradient" id="Gradient_u8vuu"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3vyb7"]
+gradient = SubResource("Gradient_u8vuu")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
+radius = 16.0
+
+[node name="Player" type="CharacterBody2D" unique_id=680644511]
+script = ExtResource("1_15tap")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=228310918]
+texture = SubResource("GradientTexture2D_3vyb7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1705084668]
+position = Vector2(4, 6)
+shape = SubResource("CircleShape2D_g2els")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1690068220]
+enabled = false
