@@ -168,24 +168,25 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="NormalMapsColumn" type="VBoxContainer" parent="MainVBox/MapPanel/MapVBox/MapColumns" unique_id=1009192098]
+[node name="CenterContainer" type="CenterContainer" parent="MainVBox/MapPanel/MapVBox/MapColumns" unique_id=1798489178]
+layout_mode = 2
+
+[node name="NormalMapsColumn" type="VBoxContainer" parent="MainVBox/MapPanel/MapVBox/MapColumns/CenterContainer" unique_id=1009192098]
 layout_mode = 2
 size_flags_horizontal = 3
+alignment = 1
 
-[node name="TextureButton" type="TextureButton" parent="MainVBox/MapPanel/MapVBox/MapColumns/NormalMapsColumn" unique_id=1487043728]
+[node name="MapButton1" type="Button" parent="MainVBox/MapPanel/MapVBox/MapColumns/CenterContainer/NormalMapsColumn" unique_id=1367418955]
 layout_mode = 2
 
-[node name="TextureButton2" type="TextureButton" parent="MainVBox/MapPanel/MapVBox/MapColumns/NormalMapsColumn" unique_id=777659720]
-layout_mode = 2
-
-[node name="TextureButton3" type="TextureButton" parent="MainVBox/MapPanel/MapVBox/MapColumns/NormalMapsColumn" unique_id=1170811075]
+[node name="MapButton2" type="Button" parent="MainVBox/MapPanel/MapVBox/MapColumns/CenterContainer/NormalMapsColumn" unique_id=1316611627]
 layout_mode = 2
 
 [node name="BossColumn" type="CenterContainer" parent="MainVBox/MapPanel/MapVBox/MapColumns" unique_id=1387599115]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="BossMapButton" type="TextureButton" parent="MainVBox/MapPanel/MapVBox/MapColumns/BossColumn" unique_id=2074656038]
+[node name="BossMapButton" type="TextureButton" parent="MainVBox/MapPanel/MapVBox/MapColumns/BossColumn" unique_id=918707971]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 
@@ -202,4 +203,7 @@ text = "START ROUND"
 [connection signal="pressed" from="MainVBox/CharacterPanel/CharacterHBox/OptionPanel/VBoxContainer/LifespanButton" to="." method="_on_lifespan_button_pressed"]
 [connection signal="pressed" from="MainVBox/CharacterPanel/CharacterHBox/OptionPanel/VBoxContainer/LegacyButton" to="." method="_on_legacy_button_pressed"]
 [connection signal="pressed" from="MainVBox/CharacterPanel/CharacterHBox/OptionPanel/VBoxContainer/MasterWeaponButton" to="." method="_on_master_weapon_button_pressed"]
+[connection signal="pressed" from="MainVBox/MapPanel/MapVBox/MapColumns/CenterContainer/NormalMapsColumn/MapButton1" to="." method="_on_map_button_1_pressed"]
+[connection signal="pressed" from="MainVBox/MapPanel/MapVBox/MapColumns/CenterContainer/NormalMapsColumn/MapButton2" to="." method="_on_map_button_2_pressed"]
+[connection signal="pressed" from="MainVBox/MapPanel/MapVBox/MapColumns/BossColumn/BossMapButton" to="." method="_on_boss_map_button_pressed"]
 [connection signal="pressed" from="MainVBox/MapPanel/MapVBox/MapColumns/StartButton/StartButton" to="." method="_on_start_button_pressed"]
