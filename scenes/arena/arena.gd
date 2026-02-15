@@ -14,7 +14,9 @@ const ARENA_SIZE = Vector2(1200, 800)
 @onready var player_spawn: Marker2D = $PlayerSpawn
 @onready var boss_spawn: Marker2D = $BossSpawn
 @onready var actor_container: Node2D = $ActorContainer
+var yeti_scene = preload("res://scenes/actors/Yeti/Yeti.tscn")
 
+@onready var yeti_spawn_timer: Timer = $YetiSpawnTimer
 #################################################
 # SCENES
 #################################################
@@ -27,7 +29,8 @@ var boss_scene = preload("res://scenes/actors/Boss/Boss.tscn")
 #################################################
 
 var background_textures = {
-	"Boss": preload("res://assets/boss_map.png")
+	"Boss": preload("res://assets/boss_map.png"),
+	#"Ice": preload("res://assets/ice_map.png")
 }
 
 #################################################
@@ -41,8 +44,12 @@ func _ready():
 
 	if GameState.selected_map == "Boss":
 		spawn_boss()
+	
+	elif GameState.selected_map == "Ice":
+		start_yeti_spawning()
 	else:
 		spawn_normal_enemies()
+	
 
 #################################################
 # LOAD BACKGROUND
@@ -131,5 +138,40 @@ func handle_stage_end(passed: bool):
 	else:
 		GameState.gain_energy(3)
 		
-		GameState.advance_turn()
-		SceneManager.goto_hub()
+	GameState.advance_turn()
+	SceneManager.goto_hub()
+
+
+#################################################
+# YETI SPAWNING
+#################################################
+func start_yeti_spawning():
+
+	if yeti_spawn_timer == null:
+		push_error("YetiSpawnTimer not found")
+		return
+
+	yeti_spawn_timer.timeout.connect(spawn_yeti)
+
+	yeti_spawn_timer.start()
+
+	print("Yeti spawning started")
+
+
+
+func spawn_yeti():
+
+	var yeti = yeti_scene.instantiate()
+
+	yeti.global_position = get_random_spawn_position()
+
+	actor_container.add_child(yeti)
+
+	print("Yeti spawned at:", yeti.global_position)
+
+func get_random_spawn_position():
+
+	return Vector2(
+		randf_range(-580, 580),
+		randf_range(-380, 380)
+	)

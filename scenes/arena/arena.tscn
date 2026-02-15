@@ -70,5 +70,7 @@ text = "FAIL"
 
 [node name="ActorContainer" type="Node2D" parent="." unique_id=914673634]
 
+[node name="YetiSpawnTimer" type="Timer" parent="." unique_id=1979937568]
+
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/PassButton" to="." method="_on_pass_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/FailButton" to="." method="_on_fail_button_pressed"]

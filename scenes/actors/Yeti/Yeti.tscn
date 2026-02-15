@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cecvvxxs02rh1"]
+
+[ext_resource type="Script" uid="uid://cqwgtfitkquur" path="res://scenes/actors/Yeti/yeti.gd" id="1_ajgeo"]
+[ext_resource type="Texture2D" uid="uid://cm24f4iq33e66" path="res://assets/characters/yeti.png" id="2_qxowd"]
+
+[node name="Yeti" type="CharacterBody2D" unique_id=422515826]
+script = ExtResource("1_ajgeo")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=875653014]
+texture = ExtResource("2_qxowd")
+
+[node name="DirectionTimer" type="Timer" parent="." unique_id=263909632]
+wait_time = 3.0
+autostart = true

@@ -104,7 +104,7 @@ func update_ui():
 
 func setup_map_panel():
 
-	map_button_1.text = "Forest"
+	map_button_1.text = "Ice"
 	map_button_2.text = "Volcano"
 
 #################################################
@@ -132,7 +132,7 @@ func update_boss_map_texture():
 
 func _on_map_button_1_pressed():
 
-	GameState.selected_map = "Forest"
+	GameState.selected_map = "Ice"
 	update_map_selection_visual()
 	update_start_button()
 
@@ -160,7 +160,7 @@ func update_map_selection_visual():
 
 	match GameState.selected_map:
 
-		"Forest":
+		"Ice":
 			map_button_1.modulate = Color(0.4, 1, 0.4)
 
 		"Volcano":
