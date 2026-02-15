@@ -141,13 +141,21 @@ text = "Train the next generation"
 layout_mode = 2
 text = "Nurture the next generation"
 
+[node name="HitGymButton" type="Button" parent="MainVBox/CharacterPanel/CharacterHBox/OptionPanel/VBoxContainer" unique_id=1200632474]
+layout_mode = 2
+text = "Hit the Gym"
+
 [node name="LifespanButton" type="Button" parent="MainVBox/CharacterPanel/CharacterHBox/OptionPanel/VBoxContainer" unique_id=654191413]
 layout_mode = 2
 text = "Prolong your own lifespan"
 
 [node name="LegacyButton" type="Button" parent="MainVBox/CharacterPanel/CharacterHBox/OptionPanel/VBoxContainer" unique_id=1896498102]
 layout_mode = 2
-text = "Enhance Legacy Augements"
+text = "Enhance legacy augements"
+
+[node name="MasterWeaponButton" type="Button" parent="MainVBox/CharacterPanel/CharacterHBox/OptionPanel/VBoxContainer" unique_id=946392176]
+layout_mode = 2
+text = "Master current weapon"
 
 [node name="MapPanel" type="PanelContainer" parent="MainVBox" unique_id=1978499782]
 layout_mode = 2
@@ -189,4 +197,10 @@ custom_minimum_size = Vector2(200, 80)
 layout_mode = 2
 text = "START ROUND"
 
+[connection signal="pressed" from="MainVBox/CharacterPanel/CharacterHBox/OptionPanel/VBoxContainer/TrainButton" to="." method="_on_train_button_pressed"]
+[connection signal="pressed" from="MainVBox/CharacterPanel/CharacterHBox/OptionPanel/VBoxContainer/NurtureButton" to="." method="_on_nurture_button_pressed"]
+[connection signal="pressed" from="MainVBox/CharacterPanel/CharacterHBox/OptionPanel/VBoxContainer/HitGymButton" to="." method="_on_hit_gym_button_pressed"]
+[connection signal="pressed" from="MainVBox/CharacterPanel/CharacterHBox/OptionPanel/VBoxContainer/LifespanButton" to="." method="_on_lifespan_button_pressed"]
+[connection signal="pressed" from="MainVBox/CharacterPanel/CharacterHBox/OptionPanel/VBoxContainer/LegacyButton" to="." method="_on_legacy_button_pressed"]
+[connection signal="pressed" from="MainVBox/CharacterPanel/CharacterHBox/OptionPanel/VBoxContainer/MasterWeaponButton" to="." method="_on_master_weapon_button_pressed"]
 [connection signal="pressed" from="MainVBox/MapPanel/MapVBox/MapColumns/StartButton/StartButton" to="." method="_on_start_button_pressed"]
