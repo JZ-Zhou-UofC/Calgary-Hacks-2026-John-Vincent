@@ -11,11 +11,58 @@ enum LifeStage {
 	BABY,
 	TEEN,
 	PRIME,
-	OLD,
-	DEAD
+	OLD
 }
 
 var life_stage: LifeStage = LifeStage.BABY
+
+
+#################################################
+# BASE STATS (NEVER MODIFY DIRECTLY)
+#################################################
+
+var BASE_STATS = {
+	"max_hp": 100,
+	"damage": 10,
+	"speed": 300,
+	"armor": 0
+}
+
+
+#################################################
+# LIFE STAGE MODIFIERS
+#################################################
+
+var LIFE_STAGE_MODIFIERS = {
+	LifeStage.BABY: {
+		"max_hp": -30,
+		"damage": -5,
+		"speed": -50,
+		"armor": -2
+	},
+
+	LifeStage.TEEN: {
+		"max_hp": 0,
+		"damage": 0,
+		"speed": 0,
+		"armor": 0
+	},
+
+	LifeStage.PRIME: {
+		"max_hp": +30,
+		"damage": +10,
+		"speed": +40,
+		"armor": +5
+	},
+
+	LifeStage.OLD: {
+		"max_hp": -10,
+		"damage": -5,
+		"speed": -60,
+		"armor": -3
+	}
+}
+
 
 #################################################
 # CURRENT PLAYER BODY (resets every generation)
@@ -37,14 +84,19 @@ var player = {
 	}
 }
 
+
 #################################################
 # META PROGRESSION (persists across generations)
 #################################################
 
 var meta = {
 
-	"legacy_augments": [],
-
+	"legacy_augments": {
+	"max_hp": 0,
+	"damage": 0,
+	"speed": 0,
+	"armor": 0
+},
 	"weapon_proficiency_bonus": {
 		"A": 0,
 		"B": 0,
@@ -59,17 +111,29 @@ var meta = {
 	}
 }
 
+
 #################################################
-# RUN RESOURCES
+# RUN RESOURCES (temporary per turn)
 #################################################
 
 var energy_essence: int = 0
+
 
 #################################################
 # MAP TRACKING
 #################################################
 
 var last_enemy_armor_type: String = "A"
+
+
+#################################################
+# INITIALIZATION
+#################################################
+
+func _ready():
+
+	apply_all_stat_modifiers()
+
 
 #################################################
 # TURN ADVANCEMENT
@@ -83,41 +147,40 @@ func advance_turn():
 
 		LifeStage.BABY:
 			life_stage = LifeStage.TEEN
-			apply_teen_bonus()
 
 		LifeStage.TEEN:
 			life_stage = LifeStage.PRIME
-			apply_prime_bonus()
 
 		LifeStage.PRIME:
 			life_stage = LifeStage.OLD
-			apply_old_penalty()
 
 		LifeStage.OLD:
-			life_stage = LifeStage.DEAD
 			handle_death_and_rebirth()
+			return
+
+	apply_all_stat_modifiers()
+
+	print("Turn:", turn)
+	print("Life stage:", life_stage)
+	print("Stats:", player)
+
 
 #################################################
-# LIFE STAGE EFFECTS
+# STAT CALCULATION (SAFE, CENTRALIZED)
 #################################################
 
-func apply_teen_bonus():
+func apply_all_stat_modifiers():
 
-	player.damage += 5
-	player.speed += 20
+	var stage_mod = LIFE_STAGE_MODIFIERS[life_stage]
+	var child_bonus = meta.child_bonus
+	var legacy = meta["legacy_augments"]
 
+	player.max_hp = BASE_STATS.max_hp + stage_mod.max_hp + child_bonus.max_hp+ legacy.max_hp
+	player.damage = BASE_STATS.damage + stage_mod.damage + child_bonus.damage+ legacy.damage
+	player.speed = BASE_STATS.speed + stage_mod.speed + child_bonus.speed+ legacy.speed
+	player.armor = BASE_STATS.armor + stage_mod.armor + child_bonus.armor+ legacy.armor
 
-func apply_prime_bonus():
-
-	player.damage += 10
-	player.speed += 30
-	player.max_hp += 20
-
-
-func apply_old_penalty():
-
-	player.damage -= 5
-	player.speed -= 20
+	player.hp = player.max_hp
 
 
 #################################################
@@ -126,9 +189,14 @@ func apply_old_penalty():
 
 func handle_death_and_rebirth():
 
+	print("Death → new child born")
+
 	create_new_child()
 
 	life_stage = LifeStage.BABY
+
+	apply_all_stat_modifiers()
+
 
 #################################################
 # CHILD CREATION
@@ -136,17 +204,20 @@ func handle_death_and_rebirth():
 
 func create_new_child():
 
-	player.max_hp = 100 + meta.child_bonus.max_hp
+	# reset stats to base first
+	player.max_hp = BASE_STATS.max_hp
+	player.damage = BASE_STATS.damage
+	player.speed = BASE_STATS.speed
+	player.armor = BASE_STATS.armor
+
 	player.hp = player.max_hp
 
-	player.damage = 10 + meta.child_bonus.damage
-	player.speed = 300 + meta.child_bonus.speed
-	player.armor = 0 + meta.child_bonus.armor
-
-	# inherit trained proficiency
+	# inherit weapon proficiency
 	player.weapon_proficiency = meta.weapon_proficiency_bonus.duplicate()
 
+	# adapt weapon to counter last enemy
 	adapt_weapon_to_enemy()
+
 
 #################################################
 # WEAPON ADAPTATION SYSTEM
@@ -165,6 +236,7 @@ func adapt_weapon_to_enemy():
 		"C":
 			player.weapon_type = "A"
 
+
 #################################################
 # ENERGY ESSENCE SYSTEM
 #################################################
@@ -172,6 +244,9 @@ func adapt_weapon_to_enemy():
 func gain_energy(amount):
 
 	energy_essence += amount
+
+	print("Energy gained:", amount)
+	print("Total energy:", energy_essence)
 
 
 func spend_energy_on_training():
@@ -181,6 +256,8 @@ func spend_energy_on_training():
 		energy_essence -= 5
 
 		meta.weapon_proficiency_bonus[player.weapon_type] += 1
+
+		print("Training complete")
 
 
 func spend_energy_on_child_nurture():
@@ -192,6 +269,8 @@ func spend_energy_on_child_nurture():
 		meta.child_bonus.max_hp += 5
 		meta.child_bonus.damage += 1
 
+		print("Child nurture increased future stats")
+
 
 func spend_energy_on_lifespan():
 
@@ -200,22 +279,54 @@ func spend_energy_on_lifespan():
 		energy_essence -= 5
 
 		if life_stage == LifeStage.OLD:
+
 			life_stage = LifeStage.PRIME
+
+			apply_all_stat_modifiers()
+
+			print("Life extended")
 
 
 func spend_energy_on_legacy():
 
-	if energy_essence >= 5:
+	if energy_essence < 5:
+		return
 
-		energy_essence -= 5
+	energy_essence -= 5
 
-		meta.legacy_augments.append("damage_boost")
-	
+	var stats = ["max_hp", "damage", "speed", "armor"]
+
+	var stat = stats.pick_random()
+
+	match stat:
+
+		"max_hp":
+			meta["legacy_augments"]["max_hp"] += 20
+
+		"damage":
+			meta["legacy_augments"]["damage"] += 2
+
+		"speed":
+			meta["legacy_augments"]["speed"] += 10
+
+		"armor":
+			meta["legacy_augments"]["armor"] += 1
+
+	print("Legacy increased:", stat)
+
+	apply_all_stat_modifiers()
+
+
+
+#################################################
+# ROUND PREPARATION
+#################################################
+
 func prepare_for_new_round():
 
-	# Reset temporary round resources
 	energy_essence = 0
 
 	print("Preparing new round")
 	print("Turn:", turn)
 	print("Life stage:", life_stage)
+	print("Stats:", player)

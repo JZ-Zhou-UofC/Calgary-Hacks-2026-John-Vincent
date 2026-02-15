@@ -61,15 +61,17 @@ shape = SubResource("RectangleShape2D_aj7ud")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=678066084]
 
-[node name="PassButton" type="Button" parent="CanvasLayer" unique_id=1362385261]
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=1499398719]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PassButton" type="Button" parent="CanvasLayer/HBoxContainer" unique_id=1362385261]
+layout_mode = 2
 text = "PASS"
 
-[node name="FailButton" type="Button" parent="CanvasLayer" unique_id=319660233]
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="FailButton" type="Button" parent="CanvasLayer/HBoxContainer" unique_id=319660233]
+layout_mode = 2
 text = "FAIL"
 
-[connection signal="pressed" from="CanvasLayer/PassButton" to="." method="_on_pass_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/FailButton" to="." method="_on_fail_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/PassButton" to="." method="_on_pass_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/FailButton" to="." method="_on_fail_button_pressed"]
