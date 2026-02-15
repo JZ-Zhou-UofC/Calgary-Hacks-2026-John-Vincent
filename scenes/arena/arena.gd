@@ -30,7 +30,7 @@ var boss_scene = preload("res://scenes/actors/Boss/Boss.tscn")
 
 var background_textures = {
 	"Boss": preload("res://assets/boss_map.png"),
-	#"Ice": preload("res://assets/ice_map.png")
+	"Ice": preload("res://assets/ice_map.png")
 }
 
 #################################################
