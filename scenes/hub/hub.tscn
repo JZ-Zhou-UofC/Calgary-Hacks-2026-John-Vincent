@@ -197,7 +197,6 @@ custom_minimum_size = Vector2(200, 80)
 layout_mode = 2
 text = "START ROUND"
 
-[connection signal="pressed" from="MainVBox/CharacterPanel/CharacterHBox/OptionPanel/VBoxContainer/TrainButton" to="." method="_on_train_button_pressed"]
 [connection signal="pressed" from="MainVBox/CharacterPanel/CharacterHBox/OptionPanel/VBoxContainer/NurtureButton" to="." method="_on_nurture_button_pressed"]
 [connection signal="pressed" from="MainVBox/CharacterPanel/CharacterHBox/OptionPanel/VBoxContainer/HitGymButton" to="." method="_on_hit_gym_button_pressed"]
 [connection signal="pressed" from="MainVBox/CharacterPanel/CharacterHBox/OptionPanel/VBoxContainer/LifespanButton" to="." method="_on_lifespan_button_pressed"]

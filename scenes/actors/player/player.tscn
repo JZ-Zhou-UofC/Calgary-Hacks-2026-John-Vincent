@@ -42,3 +42,8 @@ z_index = 1
 texture = ExtResource("2_oj104")
 hframes = 2
 frame = 1
+
+[node name="WeaponPivot" type="Node2D" parent="." unique_id=818848293]
+
+[node name="WeaponSprite" type="Sprite2D" parent="WeaponPivot" unique_id=1838081014]
+position = Vector2(40, 0)
