@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://bt5ecy81j7uv6"]
+
+[ext_resource type="Script" uid="uid://fkxy7kj33w6s" path="res://player/yeti_spamming/yeti.gd" id="1_r2bof"]
+[ext_resource type="Texture2D" uid="uid://b8kkd2vu4t1lj" path="res://player/yeti_spamming/char_cyan.png" id="2_r2bof"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfhk4"]
+atlas = ExtResource("2_r2bof")
+region = Rect2(0, 0, 127, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhy6p"]
+atlas = ExtResource("2_r2bof")
+region = Rect2(127, 0, 127, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lohho"]
+atlas = ExtResource("2_r2bof")
+region = Rect2(254, 0, 127, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2djn"]
+atlas = ExtResource("2_r2bof")
+region = Rect2(381, 0, 127, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_effya"]
+atlas = ExtResource("2_r2bof")
+region = Rect2(508, 0, 127, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyhjo"]
+atlas = ExtResource("2_r2bof")
+region = Rect2(635, 0, 127, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ype5g"]
+atlas = ExtResource("2_r2bof")
+region = Rect2(762, 0, 127, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqdtv"]
+atlas = ExtResource("2_r2bof")
+region = Rect2(889, 0, 127, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kx3u5"]
+atlas = ExtResource("2_r2bof")
+region = Rect2(1016, 0, 127, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i3pqv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfhk4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhy6p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lohho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2djn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_effya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyhjo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ype5g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqdtv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kx3u5")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r2bof"]
+radius = 15.0
+
+[node name="Yeti" type="CharacterBody2D" unique_id=1525251221]
+script = ExtResource("1_r2bof")
+speed = null
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1003905937]
+position = Vector2(27.839005, 122)
+scale = Vector2(0.2387558, 0.18750004)
+sprite_frames = SubResource("SpriteFrames_i3pqv")
+animation = &"idle"
+frame_progress = 0.6883372
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1823026219]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1745692762]
+position = Vector2(28, 124)
+shape = SubResource("CapsuleShape2D_r2bof")

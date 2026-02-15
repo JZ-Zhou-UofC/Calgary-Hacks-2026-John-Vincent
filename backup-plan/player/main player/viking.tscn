@@ -1,0 +1,150 @@
+[gd_scene format=3 uid="uid://guyc62n3qho5"]
+
+[ext_resource type="Script" uid="uid://d4enwdlenevxv" path="res://player/main player/viking.gd" id="1_ff5gs"]
+[ext_resource type="Texture2D" uid="uid://tqjp34r8hwe2" path="res://player/main player/Viking-Sheet.png" id="2_njmod"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_juaod"]
+radius = 13.038404
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_husax"]
+atlas = ExtResource("2_njmod")
+region = Rect2(0, 0, 115, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7cu5"]
+atlas = ExtResource("2_njmod")
+region = Rect2(115, 0, 115, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odpwx"]
+atlas = ExtResource("2_njmod")
+region = Rect2(230, 0, 115, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mio2r"]
+atlas = ExtResource("2_njmod")
+region = Rect2(345, 0, 115, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ckdb"]
+atlas = ExtResource("2_njmod")
+region = Rect2(460, 0, 115, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8f4j"]
+atlas = ExtResource("2_njmod")
+region = Rect2(575, 0, 115, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u577b"]
+atlas = ExtResource("2_njmod")
+region = Rect2(690, 0, 115, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hofi"]
+atlas = ExtResource("2_njmod")
+region = Rect2(805, 0, 115, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48gk5"]
+atlas = ExtResource("2_njmod")
+region = Rect2(0, 84, 115, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yg83g"]
+atlas = ExtResource("2_njmod")
+region = Rect2(115, 84, 115, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8leq"]
+atlas = ExtResource("2_njmod")
+region = Rect2(230, 84, 115, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5k2j"]
+atlas = ExtResource("2_njmod")
+region = Rect2(345, 84, 115, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrsg6"]
+atlas = ExtResource("2_njmod")
+region = Rect2(460, 84, 115, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xolme"]
+atlas = ExtResource("2_njmod")
+region = Rect2(575, 84, 115, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g817k"]
+atlas = ExtResource("2_njmod")
+region = Rect2(690, 84, 115, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qo2st"]
+atlas = ExtResource("2_njmod")
+region = Rect2(805, 84, 115, 84)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d24n4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_husax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y7cu5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odpwx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mio2r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ckdb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8f4j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u577b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3hofi")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48gk5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yg83g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b8leq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5k2j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vrsg6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xolme")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g817k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qo2st")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="viking" type="CharacterBody2D" unique_id=1611173030]
+script = ExtResource("1_ff5gs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1321077702]
+position = Vector2(308, 360)
+shape = SubResource("CircleShape2D_juaod")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=323489224]
+position = Vector2(308, 360.00003)
+scale = Vector2(0.45614904, 0.32622918)
+sprite_frames = SubResource("SpriteFrames_d24n4")
+animation = &"idle"
+frame_progress = 0.3267268
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=681578859]
+position = Vector2(314, 364)
+zoom = Vector2(3, 3)
